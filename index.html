@@ -2,74 +2,59 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUẢN LÝ ĐIỂM DANH</title>
+    <!-- THẺ QUAN TRỌNG NHẤT CHO ĐIỆN THOẠI: Chống vỡ giao diện và chặn tự động zoom khi bấm vào ô nhập liệu -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Hệ Thống Điểm Danh SAAS</title>
+    
     <style>
-        body, html {
+        /* Xóa bỏ mọi khoảng trắng thừa của trình duyệt */
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
             height: 100%;
+            background-color: #f0f2f5; 
+            overflow: hidden; /* Chỉ cuộn bên trong ứng dụng, chặn thanh cuộn của trang web ngoài */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+        /* Định dạng Iframe lấp đầy 100% màn hình */
+        .app-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Màn hình tải mượt mà (Nằm phía sau iframe) */
+        .loading-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
             text-align: center;
-            max-width: 500px;
-            width: 90%;
         }
-        h1 {
+        .loading-screen h3 {
             color: #1a73e8;
-            font-size: 24px;
-            margin-top: 0;
-            text-transform: uppercase;
-        }
-        p {
-            color: #555;
-            font-size: 15px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .btn-open {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #1a73e8;
-            color: white;
-            padding: 14px 28px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(26, 115, 232, 0.2);
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .btn-open:hover {
-            background-color: #1557b0;
-            transform: translateY(-2px);
-        }
-        .btn-open:active {
-            transform: translateY(0);
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Bảng Quản Trị Điểm Danh</h1>
-        <p>Hệ thống yêu cầu xác thực bằng tài khoản Google. Vui lòng nhấn nút bên dưới để mở phần mềm trong tab mới nhằm đảm bảo kết nối bảo mật.</p>
-        
-        <!-- Link Web App của bạn đã được gắn vào nút với thuộc tính target="_blank" -->
-        <a href="https://script.google.com/macros/s/AKfycbzRfk_iKK_xhpXPMY7wbMHD05VwUrd2UFIT_rvcRW6ksV6eIUfN5_ZCA4gd1a20ea2yKQ/exec" target="_blank" class="btn-open">
-            🚀 TRUY CẬP HỆ THỐNG
-        </a>
+    <!-- Chữ báo đang tải sẽ hiện ra trong vài giây đầu khi Google Script đang nạp -->
+    <div class="loading-screen">
+        <h3>⏳ Đang kết nối máy chủ...</h3>
     </div>
+
+    <!-- ⚠️ DÁN ĐƯỜNG LINK WEB APP CỦA BẠN (CÓ ĐUÔI /exec) VÀO THUỘC TÍNH SRC BÊN DƯỚI -->
+    <iframe 
+        class="app-iframe" 
+        src="https://script.google.com/macros/s/AKfycbzRfk_iKK_xhpXPMY7wbMHD05VwUrd2UFIT_rvcRW6ksV6eIUfN5_ZCA4gd1a20ea2yKQ/exec" 
+        allowfullscreen>
+    </iframe>
 
 </body>
 </html>
